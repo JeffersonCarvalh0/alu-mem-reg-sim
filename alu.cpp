@@ -1,5 +1,7 @@
 # include "alu.h"
 
+// Fiz um comentário aqui
+
 void EntryBits::operator = (EntryBits &in) {
     this->carryIn = in.carryIn;
     this->bitA = in.bitA;
