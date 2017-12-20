@@ -14,5 +14,5 @@ void Or::operator () (const bit a, const bit b) {
 }
 
 void OverflowDetection::operator () (const bit carryIn, const bit carryOut) {
-    overflow = carryIn ^ carryOut;
+    result = carryIn ^ carryOut;
 }

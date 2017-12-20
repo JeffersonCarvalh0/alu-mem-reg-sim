@@ -16,7 +16,7 @@ enum ResultOptions {
 
 class ALU {
     friend class FullALU; // The FullALU class will set ALU's attributes
-private:
+protected:
     // 2x1 Multiplexers
     bool AInvert;
     bool BInvert;
@@ -34,13 +34,14 @@ public:
     void process(const ResultOptions result);
 
 private:
-    void muxSelect() const;
+    void muxSelect();
 };
 
 class MSALU : public ALU {
     /* ALU for the most significant bit. It has everything an ordinary ALU
     has, plus two more output bits(set and overflow) and, of course, the
     overflow detection circuit. */
+    friend class FullALU;
 private:
     // Bits
     bit set, overflow;  // Output

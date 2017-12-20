@@ -7,8 +7,14 @@ as boolean values, hence they are declared in alu.h */
 
 # define bit unsigned short
 
+// Forward declarations
+class ALU;
+class MSALU;
+
 class Adder {
     /* 1-Bit adder */
+    friend class ALU;
+    friend class MSALU;
 private:
     bit result, carryOut;
 public:
@@ -17,6 +23,8 @@ public:
 
 class And {
     /* AND logic gate */
+    friend class ALU;
+    friend class MSALU;
 private:
     bit result;
 public:
@@ -25,6 +33,8 @@ public:
 
 class Or {
     /* OR logic gate*/
+    friend class ALU;
+    friend class MSALU;
 private:
     bit result;
 public:
@@ -33,10 +43,12 @@ public:
 
 class OverflowDetection {
     /* Overflow detection circuit */
+    friend class ALU;
+    friend class MSALU;
 private:
-    bit overflow;
+    bit result;
 public:
-    OutBits operator () (const bit a, const bit b);
+    void operator () (const bit a, const bit b);
 };
 
 # endif

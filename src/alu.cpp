@@ -3,21 +3,21 @@
 void ALU::muxSelect() {
     // Inverts bitA if AInvert is set to 1
     if (AInvert)
-        in.bitA = bitA ? 0 : 1;
+        a = a ? 0 : 1;
     // Inverts bitB if BInvert is set to 1
     if (BInvert)
-        in.bitB = bitB ? 0 : 1;
+        b = b ? 0 : 1;
 }
 
-virtual void ALU::process(const ResultOptions result, bit less) {
+void ALU::process(const ResultOptions option) {
     muxSelect(); // Will invert A or B if necessary
-    adder(a, b);
-    and(a, b);
-    or(a, b);
+    adder(a, b, carryIn);
+    andGate(a, b);
+    orGate(a, b);
 
     carryOut = adder.carryOut;
 
-    switch (result) {
+    switch (option) {
         case AND:
             result = andGate.result;
             break;
@@ -35,7 +35,7 @@ virtual void ALU::process(const ResultOptions result, bit less) {
 
 void MSALU::process(const ResultOptions result) {
     ALU::process(result);
-    ov();
+    ov(carryIn, carryOut);
 
     set = adder.result;
     overflow = ov.result;

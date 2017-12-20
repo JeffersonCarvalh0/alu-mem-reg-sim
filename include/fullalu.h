@@ -9,7 +9,7 @@
 class FullALU {
     /* Represents a full ALU with 32 bits. */
 private:
-    std::vector<MSALU*> aluArr;
+    std::vector<ALU*> aluArr;
 
     // Control lines
     bool AInvert, BNegate;
