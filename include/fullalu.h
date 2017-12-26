@@ -8,7 +8,7 @@
 
 class FullALU {
     /* Represents a full ALU with 32 bits. */
-private:
+public:
     std::vector<ALU*> aluArr;
 
     // Control lines
@@ -22,6 +22,7 @@ private:
     bool zero, overflow;
     std::vector<bit> result;
 
+private:
     // Set the bits in the current ALU
     inline void setBits(const int i, const bit lastCarryOut) const;
 
