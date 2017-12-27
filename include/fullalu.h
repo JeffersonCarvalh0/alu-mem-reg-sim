@@ -8,7 +8,9 @@
 
 class FullALU {
     /* Represents a full ALU with 32 bits. */
-public:
+    friend class ControlUnit
+    
+private:
     std::vector<ALU*> aluArr;
 
     // Control lines

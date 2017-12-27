@@ -10,6 +10,7 @@ FullALU::FullALU() {
     aluArr[0] = new MSALU();
 
     result = vector<bit>(BITS, 0);
+    zero = 0;
 }
 
 inline void FullALU::setBits(const int i, const bit lastCarryOut) const {
@@ -30,6 +31,7 @@ void FullALU::process() {
         aluArr[i]->process(operation);
         result[i] = aluArr[i]->result;
         lastCarryOut = aluArr[i]->carryOut;
+        zero |= result[i];
     }
 
     overflow = static_cast<MSALU*>(aluArr[0])->overflow;
