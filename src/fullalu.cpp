@@ -1,5 +1,4 @@
 # include "fullalu.h"
-# include <iostream>
 
 using namespace std;
 
@@ -26,7 +25,6 @@ void FullALU::process() {
     bit lastCarryOut = BNegate;
 
     for (int i = BITS - 1; i >= 0; --i) {
-        cout << "ULA Atual: " << i << '\n';
         setBits(i, lastCarryOut);
         aluArr[i]->process(operation);
         result[i] = aluArr[i]->result;

@@ -6,11 +6,13 @@
 
 # define BITS 32
 
+class ControlUnit; // Forward declaration
+
 class FullALU {
     /* Represents a full ALU with 32 bits. */
-    friend class ControlUnit
-    
-private:
+    friend class ControlUnit;
+
+public: // Will be made private when the Control Unit is done
     std::vector<ALU*> aluArr;
 
     // Control lines
