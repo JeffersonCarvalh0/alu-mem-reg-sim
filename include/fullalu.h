@@ -4,8 +4,6 @@
 # include "alu.h"
 # include <vector>
 
-# define BITS 32
-
 class ControlUnit; // Forward declaration
 
 class FullALU {

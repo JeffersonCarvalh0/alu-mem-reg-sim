@@ -3,12 +3,12 @@
 using namespace std;
 
 FullALU::FullALU() {
-    aluArr = vector<ALU*>(BITS);
-    for (int i = BITS - 1; i > 0; --i)
+    aluArr = vector<ALU*>(WORD);
+    for (int i = WORD - 1; i > 0; --i)
         aluArr[i] = new ALU();
     aluArr[0] = new MSALU();
 
-    result = vector<bit>(BITS, 0);
+    result = vector<bit>(WORD, 0);
     zero = 0;
 }
 
@@ -24,7 +24,7 @@ inline void FullALU::setBits(const int i, const bit lastCarryOut) const {
 void FullALU::process() {
     bit lastCarryOut = BNegate;
 
-    for (int i = BITS - 1; i > 0; --i) {
+    for (int i = WORD - 1; i > 0; --i) {
         setBits(i, lastCarryOut);
         aluArr[i]->process(operation);
         result[i] = aluArr[i]->result;
@@ -41,8 +41,8 @@ void FullALU::process() {
 
     // Overflow detection and slt
     overflow = static_cast<MSALU*>(aluArr[0])->overflow;
-    aluArr[BITS - 1]->less = static_cast<MSALU*>(aluArr[0])->set;
-    aluArr[BITS - 1]->AInvert = aluArr[BITS - 1]->BInvert = false;
-    aluArr[BITS - 1]->process(operation);
-    result[BITS - 1] = aluArr[BITS - 1]->result;
+    aluArr[WORD - 1]->less = static_cast<MSALU*>(aluArr[0])->set;
+    aluArr[WORD - 1]->AInvert = aluArr[WORD - 1]->BInvert = false;
+    aluArr[WORD - 1]->process(operation);
+    result[WORD - 1] = aluArr[WORD - 1]->result;
 }
