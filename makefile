@@ -12,7 +12,7 @@ fullalu.o : fullalu.cpp fullalu.h alu.o
 
 alu.o : alu.cpp alu.h alucomponents.o
 
-alucomponents.o : alucomponents.cpp alucomponents.h
+alucomponents.o : alucomponents.cpp alucomponents.h defs.h
 
 .PHONY : clean
 clean :

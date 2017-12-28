@@ -9,11 +9,6 @@ bits, implemented using boolean variables. */
 
 class FullALU; // Forward declaration
 
-enum ResultOptions {
-    /* Enum for the result selector */
-    AND, OR, SUM, LESS
-};
-
 class ALU {
     friend class FullALU; // The FullALU class will set ALU's attributes
 protected:
