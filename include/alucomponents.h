@@ -5,7 +5,7 @@
 meant to invert bits A or B are not present since they can be simply expressed
 as boolean values, hence they are declared in alu.h */
 
-# define bit unsigned short
+# define bit bool
 
 // Forward declarations
 class ALU;
