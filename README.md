@@ -6,4 +6,4 @@ architecture.
 * ALU(Done)
 * Control Unit(To do)
 * Register bank(To Do)
-* Main Memory(To do)
+* Main Memory(Done)
