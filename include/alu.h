@@ -7,8 +7,6 @@
 gates, all defined at alucomponents.h. It also has multiplexers to deny both
 bits, implemented using boolean variables. */
 
-class FullALU; // Forward declaration
-
 class ALU {
     friend class FullALU; // The FullALU class will set ALU's attributes
 protected:

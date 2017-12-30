@@ -9,22 +9,16 @@ which job is to select the appropriate memory chip based on its address,
 a MemoryChip class, which is, of course, a memory chip which stores one word,
 and each chip is composed of MemoryCells, each one storing one bit. */
 
-// Forward Declarations
-class ControlUnit;
-class MemoryChip;
-class AddressDecoder;
-class MainMemory;
-
 class MemoryCell {
-    friend MemoryChip;
+    friend class MemoryChip;
 private:
     bool WR, CS;
     bit data;
 };
 
 class MemoryChip {
-    friend AddressDecoder;
-    friend MainMemory;
+    friend class AddressDecoder;
+    friend class MainMemory;
 private:
     bool WR, CS;
     std::vector<MemoryCell> cells;
@@ -40,7 +34,7 @@ public:
 };
 
 class MainMemory {
-    friend ControlUnit;
+    friend class ControlUnit;
 public:
     // Buses input/outputs
     std::vector<bit> address;

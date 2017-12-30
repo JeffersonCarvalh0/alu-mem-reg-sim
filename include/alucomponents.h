@@ -7,10 +7,6 @@ as boolean values, hence they are declared in alu.h */
 
 # include "defs.h"
 
-// Forward declarations
-class ALU;
-class MSALU;
-
 class Adder {
     /* 1-Bit adder */
     friend class ALU;

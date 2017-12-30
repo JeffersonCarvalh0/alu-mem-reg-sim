@@ -7,8 +7,6 @@
 /* Full ALU class. It takes a bunch of ALUs together and makes operations
 with multiple bits. */
 
-class ControlUnit; // Forward declaration
-
 class FullALU {
     /* Represents a full ALU with 32 bits. */
     friend class ControlUnit;

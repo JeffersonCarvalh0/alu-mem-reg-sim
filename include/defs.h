@@ -3,8 +3,9 @@
 
 /* File used for defines, enums and global constants */
 
-# define bit bool // Data type used to represente bits
 # define WORD 32 // Word size used in the simulator
+
+typedef bool bit; // Data type used to represente bits
 
 // Enums
 enum ResultOptions {

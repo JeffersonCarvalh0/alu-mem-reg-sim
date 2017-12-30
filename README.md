@@ -4,6 +4,6 @@ architecture.
 
 ## Contents
 * ALU(Done)
-* Control Unit(To do)
-* Register bank(To Do)
 * Main Memory(Done)
+* Register bank(Done)
+* Control Unit(To do)
