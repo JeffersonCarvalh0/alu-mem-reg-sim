@@ -1,5 +1,5 @@
-# ifndef alucomponents_h
-# define alucomponents_h
+# ifndef ALUCOMPONENTS_H
+# define ALUCOMPONENTS_H
 
 /* Declaration of some components of the ALU. Notice that the multiplexers
 meant to invert bits A or B are not present since they can be simply expressed

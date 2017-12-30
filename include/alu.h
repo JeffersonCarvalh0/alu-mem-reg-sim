@@ -1,5 +1,5 @@
-# ifndef alu_h
-# define alu_h
+# ifndef ALU_H
+# define ALU_H
 
 # include "alucomponents.h"
 

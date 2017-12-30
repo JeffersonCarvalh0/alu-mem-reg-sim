@@ -1,20 +1,9 @@
 # include "mainmemory.h"
+# include "utils.h"     // bitVecToInt
 # include <vector>
-# include <algorithm>   // std::reverse
-# include <cmath>       // pow, log2
+# include <cmath>       // log2
 
 using namespace std;
-
-// Utility function
-inline int bitVecToInt(vector<bit> vec) {
-    int result = 0, size = vec.size();
-    reverse(vec.begin(), vec.end());
-
-    for (int i = 0; i < size; ++i)
-        result += vec[i] * pow(2, i);
-
-    return result;
-}
 
 // AddressDecoder
 void AddressDecoder::decode(const vector<bit> &address,
