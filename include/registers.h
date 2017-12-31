@@ -7,6 +7,7 @@
 /* In this file, the processor's registers and its register bank are defined. */
 
 # define REG_NUM 32
+# define ADDR_BUS_SIZE 5
 
 class Register {
     /* Represents a single register. */
