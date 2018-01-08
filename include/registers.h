@@ -7,7 +7,6 @@
 /* In this file, the processor's registers and its register bank are defined. */
 
 # define REG_NUM 32
-# define ADDR_BUS_SIZE 5
 
 class Register {
     /* Represents a single register. */
@@ -23,10 +22,11 @@ public:
 class RegisterBank {
     /* Represents the bank of registers in the datapath. */
     friend class ControlUnit;
-private: // Will be made public when control unit is done
+    friend class Datapath;
+private: // Control unit inputs
     bool regWrite;
 
-private:
+private: // Buses inputs
     std::vector<Register> registers;
     std::vector<bit> readReg1, readReg2, writeReg, writeData; // Inputs
     std::vector<bit> readData1, readData2; // Outputs

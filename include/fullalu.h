@@ -10,8 +10,9 @@ with multiple bits. */
 class FullALU {
     /* Represents a full ALU with 32 bits. */
     friend class ControlUnit;
+    friend class Datapath;
 
-public: // Will be made private when the Control Unit is done
+private:
     std::vector<ALU*> aluArr;
 
     // Control lines

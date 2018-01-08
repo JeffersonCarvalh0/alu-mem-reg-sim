@@ -1,12 +1,15 @@
 CXX = g++
 CXXFLAGS = -std=c++11 -Wall -I include
-OBJ = utils.o alucomponents.o alu.o fullalu.o mainmemory.o registers.o main.o
+OBJ = utils.o alucomponents.o alu.o fullalu.o mainmemory.o registers.o main.o\
+datapath.o
 VPATH = include:src
 
 main : main.cpp $(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $@
 
-main.o : main.cpp fullalu.o mainmemory.o registers.o
+main.o : main.cpp fullalu.o mainmemory.o registers.o datapath.o
+
+datapath.o : datapath.cpp datapath.h fullalu.o mainmemory.o registers.o
 
 registers.o : registers.cpp registers.h utils.o
 

@@ -35,6 +35,7 @@ public:
 
 class MainMemory {
     friend class ControlUnit;
+    friend class Datapath;
 public:
     // Buses input/outputs
     std::vector<bit> address;
