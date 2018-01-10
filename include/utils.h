@@ -9,6 +9,6 @@
 
 int bitVecToInt(std::vector<bit> vec);
 void printVec(const std::vector<bit> &vec);
-std::string resOpToStr(ResultOption op);
+std::string resOpToStr(ResultOptions op);
 
 # endif /* end of include guard: UTILS_H */

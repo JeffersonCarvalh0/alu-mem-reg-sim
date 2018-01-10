@@ -2,6 +2,7 @@
 # include <vector>
 # include <algorithm>   // std::reverse
 # include <cmath>       // pow
+# include <iostream>
 
 using namespace std;
 
@@ -22,7 +23,7 @@ void printVec(const vector<bit> &vec) {
         cout << vec[i];
 }
 
-string resOpToStr(ResultOption op) {
+string resOpToStr(ResultOptions op) {
     switch (op) {
         case AND:
             return "00 (AND)";
