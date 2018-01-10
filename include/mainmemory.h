@@ -36,13 +36,13 @@ public:
 class MainMemory {
     friend class ControlUnit;
     friend class Datapath;
-public:
-    // Buses input/outputs
+private:
+    // Inputs
     std::vector<bit> address;
     std::vector<bit> writeData;
-    std::vector<bit> readData;
 
-private: // Will be made private when control unit is done
+    // Outputs
+    std::vector<bit> readData;
 
     // Control lines
     bool memWrite, memRead;

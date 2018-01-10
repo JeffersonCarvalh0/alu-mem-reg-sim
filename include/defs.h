@@ -11,6 +11,8 @@
 # define FUNCT_SIZE 6 // Size of the funct field in the instruction
 
 typedef bool bit; // Data type used to represente bits
+/* bool is chosen because a vector<bool> is optimized to store each boolean
+value in a single bit. */
 
 // Enums
 enum ResultOptions {

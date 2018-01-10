@@ -23,13 +23,12 @@ class RegisterBank {
     /* Represents the bank of registers in the datapath. */
     friend class ControlUnit;
     friend class Datapath;
-private: // Control unit inputs
-    bool regWrite;
 
-private: // Buses inputs
+private:
     std::vector<Register> registers;
     std::vector<bit> readReg1, readReg2, writeReg, writeData; // Inputs
     std::vector<bit> readData1, readData2; // Outputs
+    bool regWrite; // Control line
 
 public:
     RegisterBank();

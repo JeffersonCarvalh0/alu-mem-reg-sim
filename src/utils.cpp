@@ -15,3 +15,24 @@ int bitVecToInt(vector<bit> vec) {
 
     return result;
 }
+
+void printVec(const vector<bit> &vec) {
+    int size = vec.size();
+    for(int i = 0; i < size; ++i)
+        cout << vec[i];
+}
+
+string resOpToStr(ResultOption op) {
+    switch (op) {
+        case AND:
+            return "00 (AND)";
+        case OR:
+            return "01 (OR)";
+        case SUM:
+            return "10 (SUM)";
+        case LESS:
+            return "11 (LESS)";
+        default:
+            return "";
+    }
+}

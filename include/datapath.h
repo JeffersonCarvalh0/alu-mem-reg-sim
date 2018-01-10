@@ -41,6 +41,9 @@ public:
         MainMemory *mem, MinorDevices *others);
     void getInstruction(const std::vector<bit> &instruction);
     void processInstruction();
+    void showRegData();
+    void showALUData();
+    void showMainMemData();
 };
 
 # endif /* end of include guard: DATAPATH_H */

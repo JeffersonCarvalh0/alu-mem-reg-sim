@@ -19,10 +19,10 @@ private:
     bool AInvert, BNegate;
     ResultOptions operation;
 
-    // Input
+    // Inputs
     std::vector<bit> inputA, inputB;
 
-    // Output
+    // Outputs
     bool zero, overflow;
     std::vector<bit> result;
 
