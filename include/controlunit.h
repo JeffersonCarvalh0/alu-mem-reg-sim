@@ -1,5 +1,5 @@
-# ifndef CONTROL_UNIT
-# define CONTROL_UNIT
+# ifndef CONTROL_UNIT_H
+# define CONTROL_UNIT_H
 
 # include "defs.h"
 # include <vector>
@@ -45,4 +45,4 @@ public:
     void process();
 };
 
-# endif /* end of include guard: CONTROL_UNIT */
+# endif /* end of include guard: CONTROL_UNIT_H */
