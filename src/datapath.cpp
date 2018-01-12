@@ -1,4 +1,5 @@
 # include "datapath.h"
+# include "controlunit.h"
 # include "fullalu.h"
 # include "mainmemory.h"
 # include "registers.h"
@@ -20,9 +21,9 @@ vector<bit> MinorDevices::signExtend(const vector<bit> &in) {
     return out;
 }
 
-Datapath::Datapath(RegisterBank *reg, ControlUnit *control, FullALU *alu,
-    MainMemory *mem, MinorDevices *others) : registerBank(reg),
-    controlUnit(control), alu(alu), mem(mem), others(others) {};
+Datapath::Datapath(RegisterBank *reg, ControlUnit *control,
+    ALUControl *aluControl, FullALU *alu, MainMemory *mem, MinorDevices *others):
+    registerBank(reg), control(control), alu(alu), mem(mem), others(others) {};
 
 void Datapath::getInstruction(const vector<bit> &instruction) {
     this->instruction = instruction;
@@ -67,8 +68,8 @@ void Datapath::processInstruction() {
     others->memOutMux = control->memToReg;
 
     // ALUControl
-    aluControl->ALUOp0 = control->ALUOp0;
-    aluControl->ALUOp1 = control->ALUOp1;
+    aluControl->aluOp0 = control->aluOp0;
+    aluControl->aluOp1 = control->aluOp1;
     aluControl->funct = funct;
     aluControl->process();
 
@@ -80,13 +81,16 @@ void Datapath::processInstruction() {
     registerBank->read();
 
     // ALU
+    alu->AInvert = aluControl->AInvert;
+    alu->BNegate = aluControl->BNegate;
+    alu->operation = bitsToResOp(aluControl->op1, aluControl->op2);
     alu->inputA = registerBank->readData1;
     alu->inputB = (others->aluInMux) ? others->signExtend(con) : registerBank->readData2;
     alu->process();
 
     // Main memory
     mem->memWrite = control->memWrite;
-    mem->MemRead = control->memRead;
+    mem->memRead = control->memRead;
     mem->address = alu->result;
     mem->writeData = registerBank->readData2;
     mem->process();

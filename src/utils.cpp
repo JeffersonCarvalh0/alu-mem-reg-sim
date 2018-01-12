@@ -37,3 +37,14 @@ string resOpToStr(ResultOptions op) {
             return "";
     }
 }
+
+ResultOptions bitsToResOp(const bit op1, const bit op2) {
+    if (op1 == 0 && op2 == 0)
+        return SUM;
+    if (op1 == 0 && op2 == 1)
+        return OR;
+    if (op1 == 1 && op2 == 0)
+        return SUM;
+    else
+        return LESS;
+}

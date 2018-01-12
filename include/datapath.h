@@ -12,6 +12,7 @@ device and send them as inputs to other devices in the datapath. */
 class RegisterBank;
 class ControlUnit;
 class FullALU;
+class ALUControl;
 class MainMemory;
 
 class MinorDevices {
@@ -30,14 +31,14 @@ private:
 
 private: // Pointers to the devices in the datapath
     RegisterBank *registerBank;
-    ControlUnit *controlUnit;
+    ControlUnit *control;
     ALUControl *aluControl;
     FullALU *alu;
     MainMemory *mem;
     MinorDevices *others;
 
 public:
-    Datapath(RegisterBank *reg, ControlUnit *control, ALUControl *aluControl,
+    Datapath(RegisterBank *reg, ControlUnit *controlUnit, ALUControl *aluControl,
          FullALU *alu, MainMemory *mem, MinorDevices *others);
     void getInstruction(const std::vector<bit> &instruction);
     void processInstruction();

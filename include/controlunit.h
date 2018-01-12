@@ -18,7 +18,7 @@ private:
     std::vector<bit> op;
 
     // Outputs
-    bit regDst, aluSrc, memToReg, regWrite, memRead, memWrite, branch aluOp1,
+    bit regDst, aluSrc, memToReg, regWrite, memRead, memWrite, branch, aluOp1,
     aluOp0;
 
 public:
@@ -31,15 +31,17 @@ class ALUControl {
     funct field of the instruction. Then, it sets the control lines in the
     ALU. */
     friend ControlUnit;
+    friend class Datapath;
 private:
     // Inputs
     bit aluOp0, aluOp1;
     std::vector<bit> funct;
 
     // Outputs
-    bit op0, op1, binvert, anegate;
+    bit op1, op2, BNegate, AInvert;
 
 public:
+    ALUControl();
     void process();
 };
 
