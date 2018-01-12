@@ -58,8 +58,22 @@ void Datapath::processInstruction() {
         con[i] = instruction[i + 16];
 
     // ControlUnit
+    control->op = op;
+    control->process();
+
+    // MinorDevices
+    others->regInMux = control->regDst;
+    others->aluInMux = control->aluSrc;
+    others->memOutMux = control->memToReg;
+
+    // ALUControl
+    aluControl->ALUOp0 = control->ALUOp0;
+    aluControl->ALUOp1 = control->ALUOp1;
+    aluControl->funct = funct;
+    aluControl->process();
 
     // RegisterBank
+    registerBank->regWrite = control->regWrite;
     registerBank->readReg1 = rs;
     registerBank->readReg2 = rt;
     registerBank->writeReg = (others->regInMux) ? shamt : rt;
@@ -71,6 +85,8 @@ void Datapath::processInstruction() {
     alu->process();
 
     // Main memory
+    mem->memWrite = control->memWrite;
+    mem->MemRead = control->memRead;
     mem->address = alu->result;
     mem->writeData = registerBank->readData2;
     mem->process();

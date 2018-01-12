@@ -16,10 +16,9 @@ class MainMemory;
 
 class MinorDevices {
     /* Other minor devices in the datapath */
-    friend ControlUnit;
     friend class Datapath;
 private:
-    bool regInMux, regOutMux, aluInMux, memOutMux;
+    bool regInMux, aluInMux, memOutMux;
 
 public:
     std::vector<bit> signExtend(const std::vector<bit> &in);
@@ -32,13 +31,14 @@ private:
 private: // Pointers to the devices in the datapath
     RegisterBank *registerBank;
     ControlUnit *controlUnit;
+    ALUControl *aluControl;
     FullALU *alu;
     MainMemory *mem;
     MinorDevices *others;
 
 public:
-    Datapath(RegisterBank *reg, ControlUnit *control, FullALU *alu,
-        MainMemory *mem, MinorDevices *others);
+    Datapath(RegisterBank *reg, ControlUnit *control, ALUControl *aluControl,
+         FullALU *alu, MainMemory *mem, MinorDevices *others);
     void getInstruction(const std::vector<bit> &instruction);
     void processInstruction();
     void showRegData();

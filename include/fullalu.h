@@ -9,7 +9,6 @@ with multiple bits. */
 
 class FullALU {
     /* Represents a full ALU with 32 bits. */
-    friend class ControlUnit;
     friend class Datapath;
 
 private:

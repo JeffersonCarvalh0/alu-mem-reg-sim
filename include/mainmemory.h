@@ -34,7 +34,6 @@ public:
 };
 
 class MainMemory {
-    friend class ControlUnit;
     friend class Datapath;
 private:
     // Inputs

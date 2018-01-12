@@ -21,7 +21,6 @@ public:
 
 class RegisterBank {
     /* Represents the bank of registers in the datapath. */
-    friend class ControlUnit;
     friend class Datapath;
 
 private:
