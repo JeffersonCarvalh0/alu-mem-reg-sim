@@ -53,7 +53,7 @@ private:
     int size, chipsNum, addrLinesNum;
 
 public:
-    MainMemory(const int size); // Size in bits
+    MainMemory(const int size = 1024); // Size in bits
     void process();
 };
 

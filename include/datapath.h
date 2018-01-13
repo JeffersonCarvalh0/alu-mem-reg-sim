@@ -1,19 +1,18 @@
 # ifndef DATAPATH_H
 # define DATAPATH_H
 
+# include "datapath.h"
+# include "controlunit.h"
+# include "fullalu.h"
+# include "mainmemory.h"
+# include "registers.h"
+# include "utils.h"
 # include "defs.h"
 # include <vector>
 
 /* Classes that represents the connections between the componnents in the ALU
 and some other minor devices. It is responsible for taking the outputs from one
 device and send them as inputs to other devices in the datapath. */
-
-// Forward declarations
-class RegisterBank;
-class ControlUnit;
-class FullALU;
-class ALUControl;
-class MainMemory;
 
 class MinorDevices {
     /* Other minor devices in the datapath */

@@ -1,9 +1,4 @@
 # include "datapath.h"
-# include "controlunit.h"
-# include "fullalu.h"
-# include "mainmemory.h"
-# include "registers.h"
-# include "utils.h"
 # include <vector>
 # include <iostream>
 

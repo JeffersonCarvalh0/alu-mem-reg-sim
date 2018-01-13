@@ -2,7 +2,7 @@
 
 using namespace std;
 
-ControlUnit::ControlUnit(ALUControl *aluControl) : aluControl(aluControl) {
+ControlUnit::ControlUnit() {
     op = vector<bit>(OP_SIZE);
 }
 

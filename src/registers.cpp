@@ -14,6 +14,7 @@ void Register::operator = (vector<bit> &r) {
 
 RegisterBank::RegisterBank() {
     registers = vector<Register>(REG_NUM);
+    registers[0].data = vector<bit>(32, 0); // $zero
     readReg1 = readReg2 = writeReg = vector<bit>(ADDR_BUS_SIZE);
     writeData = readData1 = readData2 = vector<bit>(WORD);
 }

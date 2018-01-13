@@ -22,7 +22,7 @@ private:
     aluOp0;
 
 public:
-    ControlUnit(ALUControl *aluControl);
+    ControlUnit();
     void process();
 };
 
