@@ -26,6 +26,9 @@ private:
 private:
     std::vector<bit> readData() const;
     void writeData(const std::vector<bit> &data);
+
+public:
+    MemoryChip();
 };
 
 class AddressDecoder {

@@ -26,23 +26,26 @@ void Datapath::getInstruction(const vector<bit> &instruction) {
 
 void Datapath::processInstruction() {
     vector<bit> op, rs, rt, rd, shamt, funct, con;
-    rs = rt = rd = vector<bit>(ADDR_BUS_SIZE);
+    rs = vector<bit>(ADDR_BUS_SIZE);
+    rt = vector<bit>(ADDR_BUS_SIZE);
+    rd = vector<bit>(ADDR_BUS_SIZE);
     op = vector<bit>(OP_SIZE);
     shamt = vector<bit>(SHAMT_SIZE);
+    funct = vector<bit>(FUNCT_SIZE);
     con = vector<bit>(CONST_SIZE);
 
-    for (int i = 0; i <= ADDR_BUS_SIZE; ++i) {
+    for (int i = 0; i < ADDR_BUS_SIZE; ++i) {
         // Set the addresses
         rs[i] = instruction[i + 6];
         rt[i] = instruction[i + 11];
         rd[i] = instruction[i + 16];
     }
 
-    for (int i = 0; i <= OP_SIZE; ++i)
+    for (int i = 0; i < OP_SIZE; ++i)
         // Set the op field
         op[i] = instruction[i];
 
-    for (int i = 0; i <= SHAMT_SIZE; ++i)
+    for (int i = 0; i < SHAMT_SIZE; ++i)
         // Set the shift amount field
         shamt[i] = instruction[i + 21];
 
@@ -97,7 +100,7 @@ void Datapath::processInstruction() {
 
 void Datapath::showRegData() {
     cout << "##################################################################";
-    cout << "Register Bank:\n\n";
+    cout << "\nRegister Bank:\n\n";
 
     cout << "Inputs:\n";
     cout << "Read Register 1:\n";
@@ -110,11 +113,11 @@ void Datapath::showRegData() {
 
     cout << "\nWrite Register:\n";
     printVec(registerBank->writeReg);
-    cout << "\n(" << bitVecToInt(registerBank->writeReg) << "decimal)\n";
+    cout << "\n(" << bitVecToInt(registerBank->writeReg) << " decimal)\n";
 
-    cout << "\nWrite Data\n:";
+    cout << "\nWrite Data:\n";
     printVec(registerBank->writeData);
-    cout << "\n(" << bitVecToInt(registerBank->writeData) << "decimal)\n\n";
+    cout << "\n(" << bitVecToInt(registerBank->writeData) << " decimal)\n\n";
 
     cout << "Control Lines:\n";
     cout << "RegWrite: " << registerBank->regWrite << "\n\n";
@@ -122,16 +125,16 @@ void Datapath::showRegData() {
     cout << "Outputs\n";
     cout << "Read Data 1:\n";
     printVec(registerBank->readData1);
-    cout << "\n(" << bitVecToInt(registerBank->readData1) << "decimal)\n";
+    cout << "\n(" << bitVecToInt(registerBank->readData1) << " decimal)\n";
 
     cout << "Read Data 2:\n";
     printVec(registerBank->readData2);
-    cout << "\n(" << bitVecToInt(registerBank->readData2) << "decimal)\n\n";
+    cout << "\n(" << bitVecToInt(registerBank->readData2) << " decimal)\n\n";
 }
 
 void Datapath::showALUData() {
     cout << "##################################################################";
-    cout << "ALU:\n\n";
+    cout << "\nALU:\n\n";
 
     cout << "Inputs:\n";
     cout << "Input A:\n";
@@ -140,7 +143,7 @@ void Datapath::showALUData() {
 
     cout << "\nInput B:\n";
     printVec(alu->inputB);
-    cout << "\n(" << bitVecToInt(alu->inputB) << " decimal)\n";
+    cout << "\n(" << bitVecToInt(alu->inputB) << " decimal)\n\n";
 
     cout << "Control Lines:\n";
     cout << "AInvert: " << alu->AInvert << "\n";
@@ -150,16 +153,16 @@ void Datapath::showALUData() {
     cout << "Outputs\n";
     cout << "Read Data 1:\n";
     printVec(registerBank->readData1);
-    cout << "\n(" << bitVecToInt(registerBank->readData1) << "decimal)\n";
+    cout << "\n(" << bitVecToInt(registerBank->readData1) << " decimal)\n";
 
     cout << "Read Data 2:\n";
     printVec(registerBank->readData2);
-    cout << "\n(" << bitVecToInt(registerBank->readData2) << "decimal)\n\n";
+    cout << "\n(" << bitVecToInt(registerBank->readData2) << " decimal)\n\n";
 }
 
 void Datapath::showMainMemData() {
     cout << "##################################################################";
-    cout << "Main Memory:\n\n";
+    cout << "\nMain Memory:\n\n";
 
     cout << "Inputs:\n";
     cout << "Address:\n";
@@ -177,5 +180,5 @@ void Datapath::showMainMemData() {
     cout << "Outputs\n";
     cout << "Read Data:\n";
     printVec(mem->readData);
-    cout << "\n(" << bitVecToInt(mem->readData) << "decimal)\n";
+    cout << "\n(" << bitVecToInt(mem->readData) << " decimal)\n";
 }
