@@ -162,11 +162,13 @@ void Datapath::showALUData() {
     cout << "\t\tOperation: " << resOpToStr(alu->operation) << "\n\n";
 
     cout << "\tOutputs\n";
-    cout << "\t\tZero:\n\t\t" << alu->zero << '\n';
+    cout << "\t\tZero: " << alu->zero << "\n";
 
     cout << "\n\t\tResult:\n\t\t";
     printVec(alu->result);
-    cout << "\n\t\t(" << bitVecToInt(alu->result) << " decimal)\n\n";
+    cout << "\n\t\t(" << bitVecToInt(alu->result) << " decimal)\n";
+
+    cout << "\n\t\tOverflow: " << alu->overflow << "\n\n";
 }
 
 void Datapath::showMainMemData() {
