@@ -3,16 +3,16 @@
 from sys import stdin
 
 #variables to store the binaries
-funct = {'add': '00100000', # decimal 32, R instruction
-         'sub': '00100010', # decimal 34, R instruction
-         'and': '00100100', # decimal 36, R instruction
-         'or': '00100101', # decimal 37, R instruction
-         'xor': '00100110', # decimal 38, R instruction
-         'nor': '00100111', # decimal 39, R instruction
-         'slt': '00101010', # decimal 42, R instruction
-         'addi': '00001000', # decimal 8, I instruction
-         'lw': '00100011', # decimal 35, I instruction
-         'sw': '00101011' # decimal 43, I instruction
+funct = {'add': '100000', # decimal 32, R instruction
+         'sub': '100010', # decimal 34, R instruction
+         'and': '100100', # decimal 36, R instruction
+         'or': '100101', # decimal 37, R instruction
+         'xor': '100110', # decimal 38, R instruction
+         'nor': '100111', # decimal 39, R instruction
+         'slt': '101010', # decimal 42, R instruction
+         'addi': '001000', # decimal 8, I instruction
+         'lw': '100011', # decimal 35, I instruction
+         'sw': '101011' # decimal 43, I instruction
           }
 
 registers = {'t0':'01000', #$t0 decimal 8
@@ -35,77 +35,91 @@ registers = {'t0':'01000', #$t0 decimal 8
              't9':'11001', #$t9 decimal 25
              }
 
+# line = input("Put your line code here: ") # Coment this line if you do not need any tests
+
+# Uncoment this line after tests
 for line in stdin:
     if line == '': #If an empty string is read then stop the loop
         break
-
+    
+# if(True):   # Coment this line if you do not need any tests
     #Process to take the binary
     opcode = line.split(' ')[0]
     if(opcode in ('add', 'addi', 'sub', 'and', 'or', 'slt')):
         instructionR = line.split(' ')
-        if(instrutionR[0] == 'add'):
+        if(instructionR[0] == 'add'):
             opcode = '000000'
             rs = registers[instructionR[1]]
             rt = registers[instructionR[2]]
             rd = registers[instructionR[3]]
             shamt = '00000'
             funct = funct[instructionR[0]]
-        if(instrutionR[0] == 'sub'):
+            print("Seu binário eh: "+opcode+rs+rt+rd+shamt+funct)
+        if(instructionR[0] == 'sub'):
             opcode = '000000'
             rs = registers[instructionR[1]]
             rt = registers[instructionR[2]]
             rd = registers[instructionR[3]]
             shamt = '00000'
             funct = funct[instructionR[0]]
-        if(instrutionR[0] == 'and'):
+            print("Seu binário eh: "+opcode+rs+rt+rd+shamt+funct)
+        if(instructionR[0] == 'and'):
             opcode = '000000'
             rs = registers[instructionR[1]]
             rt = registers[instructionR[2]]
             rd = registers[instructionR[3]]
             shamt = '00000'
             funct = funct[instructionR[0]]
-        if(instrutionR[0] == 'or'):
+            print("Seu binário eh: "+opcode+rs+rt+rd+shamt+funct)
+        if(instructionR[0] == 'or'):
             opcode = '000000'
             rs = registers[instructionR[1]]
             rt = registers[instructionR[2]]
             rd = registers[instructionR[3]]
             shamt = '00000'
             funct = funct[instructionR[0]]
-        if(instrutionR[0] == 'xor'):
+            print("Seu binário eh: "+opcode+rs+rt+rd+shamt+funct)
+        if(instructionR[0] == 'xor'):
             opcode = '000000'
             rs = registers[instructionR[1]]
             rt = registers[instructionR[2]]
             rd = registers[instructionR[3]]
             shamt = '00000'
             funct = funct[instructionR[0]]
-        if(instrutionR[0] == 'nor'):
+            print("Seu binário eh: "+opcode+rs+rt+rd+shamt+funct)
+        if(instructionR[0] == 'nor'):
+            opcode = '000000'
+            rs = registers[instructionR[1]]
+            rt = registers[instructionR[2]]
+            rd = registers[instructionR[3]]
+            shamt = '0000'
+            funct = funct[instructionR[0]]
+            print("Seu binário eh: "+opcode+rs+rt+rd+shamt+funct)
+        if(instructionR[0] == 'slt'):
             opcode = '000000'
             rs = registers[instructionR[1]]
             rt = registers[instructionR[2]]
             rd = registers[instructionR[3]]
             shamt = '00000'
             funct = funct[instructionR[0]]
-        if(instrutionR[0] == 'slt'):
-           opcode = '000000'
-            rs = registers[instructionR[1]]
-            rt = registers[instructionR[2]]
-            rd = registers[instructionR[3]]
-            shamt = '00000'
-            funct = funct[instructionR[0]]
+            print("Seu binário eh: "+opcode+rs+rt+rd+shamt+funct)
     else:
         instructionI = line.split(' ')
-        if(instrutionR[0] == 'addi'):
+        if(instructionI[0] == 'addi'):
             opcode = funct[instructionI[0]]
             rs = registers[instructionR[1]]
             rt = registers[instructionR[2]]
             address = instructionR[3]
-        if(instructionI = 'lw'):
+            print("Seu binário eh: "+opcode+rs+rt+address)
+        if(instructionI == 'lw'):
             opcode = funct[instructionI[0]]
             rs = registers[instructionR[1]]
             rd = registers[instructionR[2]]
             address = instructionI[3]
-        if(instructionI = 'sw'):
+            print("Seu binário eh: "+opcode+rs+rt+address)
+        if(instructionI == 'sw'):
             opcode = funct[instructionI[0]]
             rs = registers[instructionR[1]]
             rd = registers[instructionR[2]]
             address = instructionI[3]
+            print("Seu binário eh: "+opcode+rs+rt+address)
