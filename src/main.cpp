@@ -18,12 +18,11 @@ int main() {
 
     string instruction;
 
-    while (cin << instruction) {
+    unsigned int i = 1;
+    while (cin >> instruction) {
         datapath.setInstruction(instruction);
         datapath.processInstruction();
-        datapath.showRegData();
-        datapath.showALUData();
-        datapath.showMainMemData();
+        datapath.showResults(i++);
     }
 
     return 0;

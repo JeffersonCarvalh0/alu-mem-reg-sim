@@ -46,6 +46,7 @@ public:
     void showRegData();
     void showALUData();
     void showMainMemData();
+    void showResults(unsigned int i);
 };
 
 # endif /* end of include guard: DATAPATH_H */

@@ -86,7 +86,7 @@ void Datapath::processInstruction() {
     registerBank->regWrite = control->regWrite;
     registerBank->readReg1 = rs;
     registerBank->readReg2 = rt;
-    registerBank->writeReg = (others->regInMux) ? shamt : rt;
+    registerBank->writeReg = (others->regInMux) ? rd : rt;
     registerBank->read();
 
     // ALU
@@ -110,87 +110,94 @@ void Datapath::processInstruction() {
 }
 
 void Datapath::showRegData() {
-    cout << "##################################################################";
     cout << "\nRegister Bank:\n\n";
 
-    cout << "Inputs:\n";
-    cout << "Read Register 1:\n";
+    cout << "\tInputs:\n";
+    cout << "\t\tRead Register 1:\n\t\t";
     printVec(registerBank->readReg1);
-    cout << "\n(" << bitVecToInt(registerBank->readReg1) << " decimal)\n";
+    cout << "\n\t\t(" << bitVecToInt(registerBank->readReg1) << " decimal)\n";
 
-    cout << "\nRead Register 2:\n";
+    cout << "\n\t\tRead Register 2:\n\t\t";
     printVec(registerBank->readReg2);
-    cout << "\n(" << bitVecToInt(registerBank->readReg2) << " decimal)\n";
+    cout << "\n\t\t(" << bitVecToInt(registerBank->readReg2) << " decimal)\n";
 
-    cout << "\nWrite Register:\n";
+    cout << "\n\t\tWrite Register:\n\t\t";
     printVec(registerBank->writeReg);
-    cout << "\n(" << bitVecToInt(registerBank->writeReg) << " decimal)\n";
-    cout << "(Write register mux = " << others->regInMux << ")\n";
+    cout << "\n\t\t(" << bitVecToInt(registerBank->writeReg) << " decimal)\n";
+    cout << "\t\t(Write register mux = " << others->regInMux << ")\n";
 
-    cout << "\nWrite Data:\n";
+    cout << "\n\t\tWrite Data:\n\t\t";
     printVec(registerBank->writeData);
-    cout << "\n(" << bitVecToInt(registerBank->writeData) << " decimal)\n\n";
+    cout << "\n\t\t(" << bitVecToInt(registerBank->writeData) << " decimal)\n\n";
 
-    cout << "Control Lines:\n";
-    cout << "RegWrite: " << registerBank->regWrite << "\n\n";
+    cout << "\tControl Lines:\n";
+    cout << "\t\tRegWrite: " << registerBank->regWrite << "\n\n";
 
-    cout << "Outputs\n";
-    cout << "Read Data 1:\n";
+    cout << "\tOutputs\n";
+    cout << "\t\tRead Data 1:\n\t\t";
     printVec(registerBank->readData1);
-    cout << "\n(" << bitVecToInt(registerBank->readData1) << " decimal)\n";
+    cout << "\n\t\t(" << bitVecToInt(registerBank->readData1) << " decimal)\n";
 
-    cout << "\nRead Data 2:\n";
+    cout << "\n\t\tRead Data 2:\n\t\t";
     printVec(registerBank->readData2);
-    cout << "\n(" << bitVecToInt(registerBank->readData2) << " decimal)\n\n";
+    cout << "\n\t\t(" << bitVecToInt(registerBank->readData2) << " decimal)\n\n";
 }
 
 void Datapath::showALUData() {
-    cout << "##################################################################";
     cout << "\nALU:\n\n";
 
-    cout << "Inputs:\n";
-    cout << "Input A:\n";
+    cout << "\tInputs:\n";
+    cout << "\t\tInput A:\n\t\t";
     printVec(alu->inputA);
-    cout << "\n(" << bitVecToInt(alu->inputA) << " decimal)\n";
+    cout << "\n\t\t(" << bitVecToInt(alu->inputA) << " decimal)\n";
 
-    cout << "\nInput B:\n";
+    cout << "\n\t\tInput B:\n\t\t";
     printVec(alu->inputB);
-    cout << "\n(" << bitVecToInt(alu->inputB) << " decimal)\n";
-    cout << "(Input B mux = " << others->aluInMux << ")\n\n";
+    cout << "\n\t\t(" << bitVecToInt(alu->inputB) << " decimal)\n";
+    cout << "\t\t(Input B mux = " << others->aluInMux << ")\n\n";
 
-    cout << "Control Lines:\n";
-    cout << "AInvert: " << alu->AInvert << "\n";
-    cout << "BNegate: " << alu->BNegate << "\n";
-    cout << "Operation: " << resOpToStr(alu->operation) << "\n\n";
+    cout << "\tControl Lines:\n";
+    cout << "\t\tAInvert: " << alu->AInvert << "\n";
+    cout << "\t\tBNegate: " << alu->BNegate << "\n";
+    cout << "\t\tOperation: " << resOpToStr(alu->operation) << "\n\n";
 
-    cout << "Outputs\n";
-    cout << "Zero:\n" << alu->zero << '\n';
+    cout << "\tOutputs\n";
+    cout << "\t\tZero:\n\t\t" << alu->zero << '\n';
 
-    cout << "\nResult:\n";
+    cout << "\n\t\tResult:\n\t\t";
     printVec(alu->result);
-    cout << "\n(" << bitVecToInt(alu->result) << " decimal)\n\n";
+    cout << "\n\t\t(" << bitVecToInt(alu->result) << " decimal)\n\n";
 }
 
 void Datapath::showMainMemData() {
-    cout << "##################################################################";
     cout << "\nMain Memory:\n\n";
 
-    cout << "Inputs:\n";
-    cout << "Address:\n";
+    cout << "\tInputs:\n";
+    cout << "\t\tAddress:\n\t\t";
     printVec(mem->address);
-    cout << "\n(" << bitVecToInt(mem->address) << " decimal)\n";
+    cout << "\n\t\t(" << bitVecToInt(mem->address) << " decimal)\n";
 
-    cout << "\nWrite Data:\n";
+    cout << "\n\t\tWrite Data:\n\t\t";
     printVec(mem->writeData);
-    cout << "\n(" << bitVecToInt(mem->writeData) << " decimal)\n\n";
+    cout << "\n\t\t(" << bitVecToInt(mem->writeData) << " decimal)\n\n";
 
-    cout << "Control Lines:\n";
-    cout << "MemWrite: " << mem->memWrite << "\n";
-    cout << "MemRead: " << mem->memRead << "\n\n";
+    cout << "\tControl Lines:\n";
+    cout << "\t\tMemWrite: " << mem->memWrite << "\n";
+    cout << "\t\tMemRead: " << mem->memRead << "\n\n";
 
-    cout << "Outputs\n";
-    cout << "Read Data:\n";
+    cout << "\tOutputs\n";
+    cout << "\t\tRead Data:\n\t\t";
     printVec(mem->readData);
-    cout << "\n(" << bitVecToInt(mem->readData) << " decimal)\n";
-    cout << "(Memory out mux = " << others->memOutMux << ")\n\n";
+    cout << "\n\t\t(" << bitVecToInt(mem->readData) << " decimal)\n";
+    cout << "\t\t(Memory out mux = " << others->memOutMux << ")\n\n";
+}
+
+void Datapath::showResults(unsigned int i) {
+    cout << "##################################################################";
+    cout << "\nInstruction " << i << "(";
+    printVec(instruction);
+    cout << "):\n";
+    showRegData();
+    showALUData();
+    showMainMemData();
 }
