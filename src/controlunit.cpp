@@ -7,25 +7,27 @@ ControlUnit::ControlUnit() {
 }
 
 void ControlUnit::process() {
-    bit and1, and2, and3, and4, or1, or2;
+    bit rFormat, lw, sw, beq, addi, and1, or1, or2;
 
-    and1 = (!op[0] & !op[1] & !op[2] & !op[3] & !op[4] & !op[5]);
-    and2 = (op[0] & op[1] & !op[2] & !op[3] & !op[4] & op[5]);
-    and3 = (op[0] & op[1] & !op[2] & op[3] & !op[4] & op[5]);
-    and4 = (!op[0] & !op[1] & op[2] & !op[3] & !op[4] & !op[5]);
+    rFormat = (!op[0] & !op[1] & !op[2] & !op[3] & !op[4] & !op[5]);
+    lw = (op[0] & op[1] & !op[2] & !op[3] & !op[4] & op[5]);
+    sw = (op[0] & op[1] & !op[2] & op[3] & !op[4] & op[5]);
+    beq = (!op[0] & !op[1] & op[2] & !op[3] & !op[4] & !op[5]);
+    addi = (!op[0] & !op[1] & !op[2] & op[3] & !op[4] & !op[5]);
 
-    or1 = (and2 | and3);
-    or2 = (and1 | and2);
+    and1 = (rFormat & !addi);
+    or1 = (lw | sw | addi);
+    or2 = (rFormat | lw | addi);
 
     regDst = and1;
     aluSrc = or1;
-    memToReg = and2;
+    memToReg = lw;
     regWrite = or2;
-    memRead = and2;
-    memWrite = and3;
-    branch = and4;
-    aluOp1 = and1;
-    aluOp0 = and4;
+    memRead = lw;
+    memWrite = sw;
+    branch = beq;
+    aluOp1 = rFormat;
+    aluOp0 = beq;
 }
 
 ALUControl::ALUControl() {
@@ -36,6 +38,6 @@ void ALUControl::process() {
     // 4 bits - AInvert, BNegate, op1 and op2
     op1 = (aluOp0 | (aluOp1 & funct[1]));
     op2 = (aluOp0 & !aluOp0);
-    BNegate = (!aluOp1 | !funct[2]);
+    BNegate = (aluOp1 & funct[2]);
     AInvert = (aluOp1 & (funct[3] | funct[0]));
 }

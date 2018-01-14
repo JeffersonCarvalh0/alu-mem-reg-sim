@@ -1,6 +1,6 @@
 # include "datapath.h"
 # include <iostream>
-# include <vector>
+# include <string>
 
 using namespace std;
 
@@ -16,12 +16,14 @@ int main() {
     MinorDevices *others = new MinorDevices();
     Datapath datapath(registerBank, control, aluControl, alu, mem, others);
 
-    vector<bit> instruction = {
-        // addi $t0, $zero, 5
-        0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1
-    };
+    // vector<bit> addi = {
+    //     // addi $t0, $zero, 5
+    //     0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1
+    // };
 
-    datapath.getInstruction(instruction);
+    string addi = "00100000000010000000000000000101";
+
+    datapath.setInstruction(addi);
     datapath.processInstruction();
     datapath.showRegData();
     datapath.showALUData();

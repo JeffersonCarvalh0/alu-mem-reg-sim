@@ -9,6 +9,7 @@
 # include "utils.h"
 # include "defs.h"
 # include <vector>
+# include <string>
 
 /* Classes that represents the connections between the componnents in the ALU
 and some other minor devices. It is responsible for taking the outputs from one
@@ -39,7 +40,8 @@ private: // Pointers to the devices in the datapath
 public:
     Datapath(RegisterBank *reg, ControlUnit *controlUnit, ALUControl *aluControl,
          FullALU *alu, MainMemory *mem, MinorDevices *others);
-    void getInstruction(const std::vector<bit> &instruction);
+    void setInstruction(const std::vector<bit> &instruction);
+    void setInstruction(const std::string &instruction);
     void processInstruction();
     void showRegData();
     void showALUData();

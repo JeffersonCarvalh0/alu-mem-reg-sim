@@ -9,7 +9,7 @@ vector<bit> MinorDevices::signExtend(const vector<bit> &in) {
     vector<bit> out(WORD);
 
     for (int i = CONST_SIZE; i < WORD; ++i)
-        out[i] = in[i];
+        out[i] = in[i - CONST_SIZE];
 
     for (int i = 0; i < CONST_SIZE; ++i)
         out[i] = 0;
@@ -22,8 +22,15 @@ Datapath::Datapath(RegisterBank *reg, ControlUnit *control,
     registerBank(reg), control(control), aluControl(aluControl), alu(alu),
     mem(mem), others(others) {};
 
-void Datapath::getInstruction(const vector<bit> &instruction) {
+void Datapath::setInstruction(const vector<bit> &instruction) {
     this->instruction = instruction;
+}
+
+void Datapath::setInstruction(const string &instruction) {
+    vector<bit> instructionVec(WORD);
+    for (int i = 0; i < WORD; ++i)
+        instructionVec[i] = (instruction[i] == '0') ? 0 : 1;
+    this->instruction = instructionVec;
 }
 
 void Datapath::processInstruction() {
@@ -118,6 +125,7 @@ void Datapath::showRegData() {
     cout << "\nWrite Register:\n";
     printVec(registerBank->writeReg);
     cout << "\n(" << bitVecToInt(registerBank->writeReg) << " decimal)\n";
+    cout << "(Write register mux = " << others->regInMux << ")\n";
 
     cout << "\nWrite Data:\n";
     printVec(registerBank->writeData);
@@ -147,7 +155,8 @@ void Datapath::showALUData() {
 
     cout << "\nInput B:\n";
     printVec(alu->inputB);
-    cout << "\n(" << bitVecToInt(alu->inputB) << " decimal)\n\n";
+    cout << "\n(" << bitVecToInt(alu->inputB) << " decimal)\n";
+    cout << "(Input B mux = " << others->aluInMux << ")\n\n";
 
     cout << "Control Lines:\n";
     cout << "AInvert: " << alu->AInvert << "\n";
@@ -155,13 +164,11 @@ void Datapath::showALUData() {
     cout << "Operation: " << resOpToStr(alu->operation) << "\n\n";
 
     cout << "Outputs\n";
-    cout << "Read Data 1:\n";
-    printVec(registerBank->readData1);
-    cout << "\n(" << bitVecToInt(registerBank->readData1) << " decimal)\n";
+    cout << "Zero:\n" << alu->zero << '\n';
 
-    cout << "\nRead Data 2:\n";
-    printVec(registerBank->readData2);
-    cout << "\n(" << bitVecToInt(registerBank->readData2) << " decimal)\n\n";
+    cout << "\nResult:\n";
+    printVec(alu->result);
+    cout << "\n(" << bitVecToInt(alu->result) << " decimal)\n\n";
 }
 
 void Datapath::showMainMemData() {
@@ -175,7 +182,7 @@ void Datapath::showMainMemData() {
 
     cout << "\nWrite Data:\n";
     printVec(mem->writeData);
-    cout << "\n(" << bitVecToInt(mem->writeData) << " decimal)\n";
+    cout << "\n(" << bitVecToInt(mem->writeData) << " decimal)\n\n";
 
     cout << "Control Lines:\n";
     cout << "MemWrite: " << mem->memWrite << "\n";
@@ -185,4 +192,5 @@ void Datapath::showMainMemData() {
     cout << "Read Data:\n";
     printVec(mem->readData);
     cout << "\n(" << bitVecToInt(mem->readData) << " decimal)\n";
+    cout << "(Memory out mux = " << others->memOutMux << ")\n\n";
 }
