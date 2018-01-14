@@ -203,3 +203,13 @@ void Datapath::showResults(unsigned int i) {
     showALUData();
     showMainMemData();
 }
+
+void Datapath::setMaxInt(const vector<bit> &reg) {
+    registerBank->writeData = {
+        0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1
+    };
+    registerBank->regWrite = true;
+    registerBank->writeReg = reg;
+    registerBank->write();
+}

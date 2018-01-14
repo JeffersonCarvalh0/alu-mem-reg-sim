@@ -47,6 +47,7 @@ public:
     void showALUData();
     void showMainMemData();
     void showResults(unsigned int i);
+    void setMaxInt(const std::vector<bit> &reg);
 };
 
 # endif /* end of include guard: DATAPATH_H */
