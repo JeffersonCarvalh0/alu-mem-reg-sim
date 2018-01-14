@@ -1,6 +1,7 @@
 # include "datapath.h"
 # include <vector>
 # include <iostream>
+# include <algorithm> // std::reverse
 
 using namespace std;
 
@@ -44,6 +45,7 @@ void Datapath::processInstruction() {
     for (int i = 0; i < OP_SIZE; ++i)
         // Set the op field
         op[i] = instruction[i];
+    reverse(op.begin(), op.end());
 
     for (int i = 0; i < SHAMT_SIZE; ++i)
         // Set the shift amount field
@@ -52,6 +54,7 @@ void Datapath::processInstruction() {
     for (int i = 0; i < FUNCT_SIZE; ++i)
         // Set the funct field
         funct[i] = instruction[i + 26];
+    reverse(funct.begin(), funct.end());
 
     for (int i = 0; i < CONST_SIZE; ++i)
         con[i] = instruction[i + 16];

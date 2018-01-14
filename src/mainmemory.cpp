@@ -1,7 +1,6 @@
 # include "mainmemory.h"
 # include "utils.h"     // bitVecToInt
 # include <vector>
-# include <cmath>       // log2
 
 using namespace std;
 
@@ -41,7 +40,6 @@ MainMemory::MainMemory(const int size) {
     readData = vector<bit>(WORD);
     this->size = size;
     chipsNum = size / WORD;
-    addrLinesNum = log2(chipsNum);
     memChips = vector<MemoryChip>(chipsNum);
 }
 

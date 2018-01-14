@@ -8,7 +8,7 @@ FullALU::FullALU() {
         aluArr[i] = new ALU();
     aluArr[0] = new MSALU();
 
-    result = vector<bit>(WORD, 0);
+    result = vector<bit>(WORD);
     zero = 0;
 }
 

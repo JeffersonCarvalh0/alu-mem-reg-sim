@@ -53,7 +53,7 @@ private:
     AddressDecoder decoder;
     std::vector<MemoryChip> memChips;
 
-    int size, chipsNum, addrLinesNum;
+    int size, chipsNum;
 
 public:
     MainMemory(const int size = 1024); // Size in bits
