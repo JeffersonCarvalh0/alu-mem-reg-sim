@@ -23,6 +23,7 @@ inline void FullALU::setBits(const int i, const bit lastCarryOut) const {
 
 void FullALU::process() {
     bit lastCarryOut = BNegate;
+    zero = 0;
 
     for (int i = WORD - 1; i > 0; --i) {
         setBits(i, lastCarryOut);

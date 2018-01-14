@@ -133,7 +133,7 @@ void Datapath::showRegData() {
     cout << "\tControl Lines:\n";
     cout << "\t\tRegWrite: " << registerBank->regWrite << "\n\n";
 
-    cout << "\tOutputs\n";
+    cout << "\tOutputs:\n";
     cout << "\t\tRead Data 1:\n\t\t";
     printVec(registerBank->readData1);
     cout << "\n\t\t(" << bitVecToInt(registerBank->readData1) << " decimal)\n";
@@ -161,7 +161,7 @@ void Datapath::showALUData() {
     cout << "\t\tBNegate: " << alu->BNegate << "\n";
     cout << "\t\tOperation: " << resOpToStr(alu->operation) << "\n\n";
 
-    cout << "\tOutputs\n";
+    cout << "\tOutputs:\n";
     cout << "\t\tZero: " << alu->zero << "\n";
 
     cout << "\n\t\tResult:\n\t\t";
@@ -187,7 +187,7 @@ void Datapath::showMainMemData() {
     cout << "\t\tMemWrite: " << mem->memWrite << "\n";
     cout << "\t\tMemRead: " << mem->memRead << "\n\n";
 
-    cout << "\tOutputs\n";
+    cout << "\tOutputs:\n";
     cout << "\t\tRead Data:\n\t\t";
     printVec(mem->readData);
     cout << "\n\t\t(" << bitVecToInt(mem->readData) << " decimal)\n";
