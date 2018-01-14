@@ -19,7 +19,8 @@ vector<bit> MinorDevices::signExtend(const vector<bit> &in) {
 
 Datapath::Datapath(RegisterBank *reg, ControlUnit *control,
     ALUControl *aluControl, FullALU *alu, MainMemory *mem, MinorDevices *others):
-    registerBank(reg), control(control), alu(alu), mem(mem), others(others) {};
+    registerBank(reg), control(control), aluControl(aluControl), alu(alu),
+    mem(mem), others(others) {};
 
 void Datapath::getInstruction(const vector<bit> &instruction) {
     this->instruction = instruction;
@@ -69,9 +70,9 @@ void Datapath::processInstruction() {
     others->memOutMux = control->memToReg;
 
     // ALUControl
+    aluControl->funct = funct;
     aluControl->aluOp0 = control->aluOp0;
     aluControl->aluOp1 = control->aluOp1;
-    aluControl->funct = funct;
     aluControl->process();
 
     // RegisterBank
@@ -130,7 +131,7 @@ void Datapath::showRegData() {
     printVec(registerBank->readData1);
     cout << "\n(" << bitVecToInt(registerBank->readData1) << " decimal)\n";
 
-    cout << "Read Data 2:\n";
+    cout << "\nRead Data 2:\n";
     printVec(registerBank->readData2);
     cout << "\n(" << bitVecToInt(registerBank->readData2) << " decimal)\n\n";
 }
@@ -158,7 +159,7 @@ void Datapath::showALUData() {
     printVec(registerBank->readData1);
     cout << "\n(" << bitVecToInt(registerBank->readData1) << " decimal)\n";
 
-    cout << "Read Data 2:\n";
+    cout << "\nRead Data 2:\n";
     printVec(registerBank->readData2);
     cout << "\n(" << bitVecToInt(registerBank->readData2) << " decimal)\n\n";
 }
