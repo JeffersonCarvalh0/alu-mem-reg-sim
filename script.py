@@ -19,8 +19,7 @@ op = {'add': '100000', # decimal 32, R instruction
          'sw': '101011' # decimal 43, I instruction
           }
 
-registers = {
-             'zero':'00000',
+registers = {'zero':'00000', #$zero decimal 0
              't0':'01000', #$t0 decimal 8
              't1':'01001', #$t1 decimal 9
              't2':'01010', #$t2 decimal 10
