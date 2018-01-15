@@ -4,7 +4,7 @@ from sys import stdin
 import subprocess
 
 #variables to store the binaries
-funct = {'add': '100000', # decimal 32, R instruction
+function = {'add': '100000', # decimal 32, R instruction
          'sub': '100010', # decimal 34, R instruction
          'and': '100100', # decimal 36, R instruction
          'or': '100101', # decimal 37, R instruction
@@ -57,10 +57,10 @@ if(True):   # Coment this line if you do not need any tests
         rs = registers[instruction[2]]
         rt = registers[instruction[3]]
         shamt = '00000'
-        funct = funct[instruction[0]]
+        funct = function[instruction[0]]
         print("Seu binário eh: "+opcode+rs+rt+rd+shamt+funct)
     else:
-        opcode = funct[instruction[0]]
+        opcode = function[instruction[0]]
         rt = registers[instruction[1]]
         rs = registers[instruction[2]]
         address = (bin(int(instruction[3])).split('b'))[1].zfill(16)
