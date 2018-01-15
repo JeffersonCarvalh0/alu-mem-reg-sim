@@ -18,9 +18,9 @@ int main() {
 
     string instruction;
 
-    // vector<bit> maxIntReg = {1, 0, 0, 0, 0};
-    //
-    // datapath.setMaxInt(maxIntReg);
+    vector<bit> maxIntReg = {1, 0, 0, 0, 0};
+
+    datapath.setMaxInt(maxIntReg);
 
     unsigned int i = 1;
     while (cin >> instruction) {

@@ -1,3 +1,4 @@
+#! /usr/bin/python3
 # encoding: utf-8
 
 # script to get a binary from an assembly code
@@ -7,17 +8,21 @@ from subprocess import Popen, PIPE
 import io
 
 #variables to store the binaries
-op = {'add': '100000', # decimal 32, R instruction
-         'sub': '100010', # decimal 34, R instruction
-         'and': '100100', # decimal 36, R instruction
-         'or': '100101', # decimal 37, R instruction
-         'xor': '100110', # decimal 38, R instruction
-         'nor': '100111', # decimal 39, R instruction
-         'slt': '101010', # decimal 42, R instruction
-         'addi': '001000', # decimal 8, I instruction
-         'lw': '100011', # decimal 35, I instruction
-         'sw': '101011' # decimal 43, I instruction
-          }
+rType = {
+    'add': '100000', # decimal 32, R instruction
+    'sub': '100010', # decimal 34, R instruction
+    'and': '100100', # decimal 36, R instruction
+    'or': '100101', # decimal 37, R instruction
+    'xor': '100110', # decimal 38, R instruction
+    'nor': '100111', # decimal 39, R instruction
+    'slt': '101010', # decimal 42, R instruction
+}
+
+iType = {
+    'addi': '001000', # decimal 8, I instruction
+    'lw': '100011', # decimal 35, I instruction
+    'sw': '101011' # decimal 43, I instruction
+}
 
 registers = {'zero':'00000', #$zero decimal 0
              't0':'01000', #$t0 decimal 8
@@ -52,17 +57,17 @@ for line in stdin:
 # if(True):   # Coment this line if you do not need any tests
     #Process to take the binary
     instruction = line.split()
-    opcode = instruction[0]
-    if(opcode in ('add', 'sub', 'and', 'or', 'slt')):
+    operation = instruction[0]
+    if(operation in rType.keys()):
         opcode = '000000'
         rd = registers[instruction[1]]
         rs = registers[instruction[2]]
         rt = registers[instruction[3]]
         shamt = '00000'
-        funct = op[instruction[0]]
+        funct = rType[instruction[0]]
         binary.write(opcode+rs+rt+rd+shamt+funct+'\n')
     else:
-        opcode = op[instruction[0]]
+        opcode = iType[instruction[0]]
         rt = registers[instruction[1]]
         rs = registers[instruction[2]]
         address = bin(int(instruction[3]))[2:].zfill(16)

@@ -1,4 +1,7 @@
 # include "controlunit.h"
+# include <iostream>
+
+using namespace std;
 
 using namespace std;
 
@@ -36,8 +39,8 @@ ALUControl::ALUControl() {
 
 void ALUControl::process() {
     // 4 bits - AInvert, BNegate, op1 and op2
-    op1 = (aluOp0 | (aluOp1 & funct[1]));
-    op2 = (aluOp0 & !aluOp0);
-    BNegate = (aluOp1 & funct[2]);
-    AInvert = (aluOp1 & (funct[3] | funct[0]));
+    AInvert = (aluOp0 & !aluOp0);
+    BNegate = (aluOp0 | (aluOp1 & funct[1]));
+    op1 = (!aluOp1 | !funct[2]);
+    op2 = (aluOp1 & (funct[3] | funct[0]));
 }
