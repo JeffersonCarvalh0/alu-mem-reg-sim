@@ -41,4 +41,3 @@ void ALUControl::process() {
     BNegate = (aluOp1 & funct[2]);
     AInvert = (aluOp1 & (funct[3] | funct[0]));
 }
->>>>>>> upstream/master
