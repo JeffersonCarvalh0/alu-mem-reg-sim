@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-
-=======
 # include "controlunit.h"
 
 using namespace std;
