@@ -1,36 +1,33 @@
-# include "fullalu.h"
+# include "datapath.h"
 # include <iostream>
-# include <vector>
+# include <string>
 
 using namespace std;
 
 int main() {
-    // FullALU alu;
+    // Create the devices of the datapath
+    RegisterBank *registerBank = new RegisterBank();
+    ControlUnit *control = new ControlUnit();
+    ALUControl *aluControl = new ALUControl();
+    FullALU *alu = new FullALU();
+    MainMemory *mem = new MainMemory();
+
+    // Create the datapath
+    MinorDevices *others = new MinorDevices();
+    Datapath datapath(registerBank, control, aluControl, alu, mem, others);
+
+    string instruction;
+
+    // vector<bit> maxIntReg = {1, 0, 0, 0, 0};
     //
-    // vector<bit> a = {
-    //     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    //     0, 0, 0, 0, 0, 1, 0, 1
-    // };
-    //
-    // vector<bit> b = {
-    //     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    //     0, 0, 0, 0, 0, 1, 0, 1
-    // };
-    //
-    // // 5 - 5
-    // alu.AInvert = false;
-    // alu.BNegate = false;
-    // alu.operation = SUM;
-    // alu.inputA = a;
-    // alu.inputB = b;
-    // alu.process();
-    //
-    // cout << "Zero: " << alu.zero << '\n';
-    // cout << "Overflow: " << alu.overflow << '\n';
-    // cout << "Result: \n";
-    // for (const auto &e : alu.result)
-    //     cout << e;
-    // cout << endl;
+    // datapath.setMaxInt(maxIntReg);
+
+    unsigned int i = 1;
+    while (cin >> instruction) {
+        datapath.setInstruction(instruction);
+        datapath.processInstruction();
+        datapath.showResults(i++);
+    }
 
     return 0;
 }

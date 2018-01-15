@@ -1,6 +1,7 @@
 #script to get a binary from an assembly code
 
 from sys import stdin
+import subprocess
 
 #variables to store the binaries
 funct = {'add': '100000', # decimal 32, R instruction

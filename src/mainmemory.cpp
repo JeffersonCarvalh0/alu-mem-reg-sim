@@ -1,7 +1,6 @@
 # include "mainmemory.h"
 # include "utils.h"     // bitVecToInt
 # include <vector>
-# include <cmath>       // log2
 
 using namespace std;
 
@@ -17,6 +16,10 @@ void AddressDecoder::decode(const vector<bit> &address,
 }
 
 // MemoryChip
+MemoryChip::MemoryChip() {
+    cells = vector<MemoryCell>(WORD);
+}
+
 vector<bit> MemoryChip::readData() const {
     vector<bit> data(WORD);
     for (int i = 0; i < WORD; ++i)
@@ -32,9 +35,11 @@ void MemoryChip::writeData(const vector<bit> &data) {
 
 // Main Memory
 MainMemory::MainMemory(const int size) {
+    address = vector<bit>(WORD);
+    writeData = vector<bit>(WORD);
+    readData = vector<bit>(WORD);
     this->size = size;
     chipsNum = size / WORD;
-    addrLinesNum = log2(chipsNum);
     memChips = vector<MemoryChip>(chipsNum);
 }
 

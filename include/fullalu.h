@@ -9,7 +9,6 @@ with multiple bits. */
 
 class FullALU {
     /* Represents a full ALU with 32 bits. */
-    friend class ControlUnit;
     friend class Datapath;
 
 private:
@@ -19,10 +18,10 @@ private:
     bool AInvert, BNegate;
     ResultOptions operation;
 
-    // Input
+    // Inputs
     std::vector<bit> inputA, inputB;
 
-    // Output
+    // Outputs
     bool zero, overflow;
     std::vector<bit> result;
 

@@ -8,7 +8,7 @@ FullALU::FullALU() {
         aluArr[i] = new ALU();
     aluArr[0] = new MSALU();
 
-    result = vector<bit>(WORD, 0);
+    result = vector<bit>(WORD);
     zero = 0;
 }
 
@@ -23,6 +23,7 @@ inline void FullALU::setBits(const int i, const bit lastCarryOut) const {
 
 void FullALU::process() {
     bit lastCarryOut = BNegate;
+    zero = 0;
 
     for (int i = WORD - 1; i > 0; --i) {
         setBits(i, lastCarryOut);

@@ -26,6 +26,9 @@ private:
 private:
     std::vector<bit> readData() const;
     void writeData(const std::vector<bit> &data);
+
+public:
+    MemoryChip();
 };
 
 class AddressDecoder {
@@ -34,15 +37,14 @@ public:
 };
 
 class MainMemory {
-    friend class ControlUnit;
     friend class Datapath;
-public:
-    // Buses input/outputs
+private:
+    // Inputs
     std::vector<bit> address;
     std::vector<bit> writeData;
-    std::vector<bit> readData;
 
-private: // Will be made private when control unit is done
+    // Outputs
+    std::vector<bit> readData;
 
     // Control lines
     bool memWrite, memRead;
@@ -51,10 +53,10 @@ private: // Will be made private when control unit is done
     AddressDecoder decoder;
     std::vector<MemoryChip> memChips;
 
-    int size, chipsNum, addrLinesNum;
+    int size, chipsNum;
 
 public:
-    MainMemory(const int size); // Size in bits
+    MainMemory(const int size = 1024); // Size in bits
     void process();
 };
 
